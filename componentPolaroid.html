@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <title>LAB 5</title>
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+    <style>
+        body {
+            background: grey;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script type="text/babel">
+    class Photo extends React.Component{
+    render(){
+        var photoStyle={
+            display: "block",
+            height:540,
+            width:640,
+            borderWidth: 30,
+            backgroundSize:"cover",
+            backgroundImage:  `url(${this.props.image})`
+
+    };
+    return(
+        <div style={photoStyle}>
+    <br/>
+    </div>
+    );
+    }
+    }
+    class Label extends React.Component{
+    render(){
+        var labelStyle={
+            fontFamily:"Permanent Marker, cursive",
+            fontWeight:"bold",
+            fontSize: 46,
+            padding:13,
+            margin:0,
+            textAlign: "center"
+        };
+    return(
+        <p style={labelStyle}>{this.props.text}</p>
+    );
+    }
+    }
+    class Polaroid extends React.Component{
+    render(){
+        var cardStyle={
+            height:640,
+            width:640,
+            display:"block",
+            backgroundColor: "#FFF",
+            boxShadow: "0px 0px 4px #777",
+            padding:30,
+        };
+    return(
+    <div style={cardStyle}>
+    <Photo image={this.props.image}/>
+    <Label text={this.props.text}/>
+    </div>
+    );
+    }
+    }
+    ReactDOM.render(
+    <div>
+        <Polaroid image="coffee.jpg" text="Fresh coffee in a red mug!" />
+    </div>,
+    document.querySelector("#container")
+    );
+    </script>
+</body>
+
+</html>

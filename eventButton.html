@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <title>Basic React App</title>
+</head>
+
+<body>
+    <div id="container">
+    </div>
+        <script type="text/babel"> 
+                class BiscuitCounter extends React.Component{ 
+                    constructor(props){ 
+                        super(props); 
+                        this.increaseCounter = this.increaseCounter.bind(this);
+                        this.state = { 
+                            biscuits: 0 
+                            };
+                    } 
+
+                    increaseCounter() {
+                        this.setState(
+                            {
+                                biscuits: this.state.biscuits+1                
+                                }
+                            );
+                        }
+
+                    render(){ 
+                        return(
+                            <div>
+                                <h1>Total Biscuits: {this.state.biscuits}</h1> 
+                                <button onClick={this.increaseCounter} >Had a Biscuit</button> 
+                            </div> 
+                        ); 
+                    } 
+                } 
+                    
+                ReactDOM.render(
+                    <div>
+                        <BiscuitCounter/>
+                    </div>, 
+                    document.querySelector("#container") 
+                );
+        </script>
+    </body>
+</html>

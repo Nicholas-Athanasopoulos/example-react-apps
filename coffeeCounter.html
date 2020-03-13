@@ -1,0 +1,75 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <title>Basic React App</title>
+</head>
+
+<body>
+    <div id="container">
+    </div>
+    <script type="text/babel"> 
+        class CoffeeCounter extends React.Component{ 
+            constructor(props){
+                super(props);
+                
+                this.state = {
+                    drinks: 0,
+                    beans: 0
+                };   
+                
+                this.updateDrinkCounter = this.updateDrinkCounter.bind(this);         
+            }
+            
+            updateDrinkCounter(){
+                
+                this.setState(
+                    {
+                        drinks: this.state.drinks+1100,  
+                        beans: this.state.beans + 1100 * 56     
+                               
+                    }
+                );  
+            }
+
+            componentDidMount(){
+                setInterval(
+                    this.updateDrinkCounter, 1000
+                    
+                    );            
+                }
+            
+            render(){ 
+                return(
+                    <div>
+                    <h1>Cups of coffee bought: {this.state.drinks}</h1> 
+                    <p>... That's  {this.state.beans} every second</p>
+                    </div>
+                    ); 
+                } 
+            } 
+        class CoffeeCounterDisplay extends React.Component{ 
+            render(){
+            
+                return(
+                    <div>
+                        <CoffeeCounter/>
+                    </div> 
+                ); 
+            } 
+        }          
+    
+            ReactDOM.render(
+            <div>
+                <CoffeeCounterDisplay/>
+            </div>, 
+            document.querySelector("#container") 
+            );
+            
+            </script>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- only the following CDN resources to be used -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <title>React App</title>
+
+    <style>
+        body,
+        div {
+            text-align: center;
+            margin: 0 auto;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+    </div>
+
+    <script type="text/babel">
+
+class Badge extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            name: "unknown",
+            bgColor: "green"
+            }
+        }
+    
+        updateName(e){
+        this.setState({
+            name: e.target.value
+        })
+    }
+
+        updateColor(e){
+            this.setState({
+                bgColor: e.target.value
+            })
+        }
+
+        random(e){
+            this.setState({
+                bgColor: "purple"
+            })
+        }
+
+    render(){
+        var badgeStyle={
+            width:400,
+            height:100,
+            color:"white",
+            fontFamily:"Arial",
+            fontSize:36,
+            marginBottom:20,
+            backgroundColor: this.state.bgColor
+        }
+
+    return(
+        <div>
+            <div style={badgeStyle}>
+            {this.state.name}
+            </div>
+                            
+            Name: <input id="name" name="name" placeholder="Joe Bloggs" value={this.state.name} onChange={evt => this.updateName(evt)} /> 
+            Job: <input placeholder="red" value={this.state.bgColor} onChange={evt => this.updateColor(evt)} /> 
+            <button onClick={evt => this.random(evt)}>Purple</button>
+        </div>
+        );
+    }
+}
+
+    ReactDOM.render( 
+    <div>
+    <Badge />
+    </div>,
+    document.querySelector("#container") 
+    );
+</script>
+
+</body>
+
+</html>

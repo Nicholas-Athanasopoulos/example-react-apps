@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--Loading react into the page-->
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <title>React App</title>
+</head>
+
+<body>
+<!--Container which component will output in-->
+    <div id="container">
+    </div>
+<!--Start of the react code-->
+    <script type="text/babel">
+// Class which is using the React.Component class
+// Created the welcome component
+    class Welcome extends React.Component{
+        render(){
+            return <h1> Welcome to HackEvent 2019 {this.props.name} </h1>
+// It will return the h1 tags and add the name prop that is specified later on in the code
+        }
+    }
+        ReactDOM.render(
+            <div>
+                <Welcome name="Nicholas" />
+            </div>,
+        document.querySelector("#container")
+        );
+// This code says what will be rendered in the container div at the start of the body tags
+// It it using the Welcome component that was built above and putting in the name
+    </script>
+</body>
+
+</html>

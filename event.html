@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--Loading react into the page-->
+<!--Importing the custom font-->
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" rel="stylesheet">
+    <title>React App</title>
+</head>
+<body>
+    <!--Container which component will output in-->
+    <div id="container">
+    </div>
+    <!--Start of the react code-->
+    <script type="text/babel">
+// Creating the component class 
+    class CountdownTimerEvent extends React.Component{
+        constructor(props) {
+            super(props);
+            this.state = {
+                days: 0,
+                hours: 0,
+                deadline: "July 4, 2023"
+            }
+        }
+// I am setting the state of these values to zero
+// I am also setting the deadline to July 4, 2019
+
+        componentWillMount(){
+            this.getTimeUntil(this.state.deadline)
+        }
+// Theh componentWillMount method is going to continue getting the time until the deadline is reached
+// The method is running every second so that the information stays current
+        componentDidMount(){
+            setInterval(() => this.getTimeUntil(this.state.deadline), 1000);
+        }
+// The getTimeUntil method is setting the time to the deadline - current date
+// It also has the equations for the hours and days
+        getTimeUntil(deadline){
+            const time = Date.parse(deadline) - Date.parse(new Date());
+            const hours = Math.floor(time/(1000 * 60 * 60));
+            const days = Math.floor(time/(1000 * 60 * 60 * 24));
+// It is also setting the state to the current days,hours
+            this.setState({days, hours});
+        }
+
+        render(){
+// Setting the styling for the countdown
+            var countdownStyle={
+                fontFamily: 'Yanone Kaffeesatz', 
+                textAlign: "center",
+                marginTop: "200px"
+            };
+// Setting the styling for the h4 tag
+            var h4Style={
+                fontSize: 40,
+                color: "grey"
+            };
+// Setting the styling for the h1 tag
+            var h1Style={
+                fontSize: 80
+            };
+// Setting the styling for the h2 tag
+            var h2Style={
+                fontSize: 50
+            };
+// Applying the styling to the div and heading tags
+// Its also contains what text is outputting in the tags
+            return (
+            <div style={countdownStyle}>
+                <h4 style={h4Style}> HackEvent 2019 </h4>
+                <h1 style={h1Style}> {this.state.days} days to go </h1>
+                <h2 style={h2Style}> (that's ...{this.state.hours} hours and counting) </h2>
+            </div>
+            );
+        }
+    }
+// Outputting the component into the div
+        ReactDOM.render(
+            <div>
+                <CountdownTimerEvent />
+            </div>,
+// Saying what div it will be outputted to
+        document.querySelector("#container")
+        );
+    </script>
+</body>
+
+</html>

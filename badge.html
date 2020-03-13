@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--Loading react into the page-->
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <title>React App</title>
+</head>
+
+<body>
+    <!-- Style tags to style the hr tag used-->
+    <style>
+        hr {
+            /* Setting the width to 90% so that it does not take up the entire component and setting
+the border size, type and colour*/
+            border: 1px solid black;
+            width: 90%;
+        }
+    </style>
+    <!-- Container which the component will output in-->
+    <div id="container">
+    </div>
+    <!-- Start of the react code-->
+    <script type="text/babel">
+// This is a class for the name component
+    class Name extends React.Component {
+        render(){ 
+// This is the styling for the component being put into a variable
+// I'm setting the font type and size, as well as adding padding so that 
+// the badges are not touching the edge of the page
+            var nameStyle={
+                fontFamily: "Verdana, Geneva, sans-serif",
+                fontSize: 20,
+                paddingLeft: 10,
+            };
+            return ( 
+// I'm adding the styling to the h2 tag
+// I also made it output the name prop
+// I have a hr tag so that the name and the rest of the information will be seperated
+                <div>
+                    <h2 style={nameStyle}> {this.props.name} </h2>
+                    <hr/>
+                </div>
+            );
+        }
+    }
+// This is a class for the job component
+    class Job extends React.Component {
+        render(){ 
+// This is the styling for the component being put into a variable
+// I'm setting the font type and size, as well as adding padding so that 
+// the badges are not touching the edge of the page
+            var jobStyle={
+                fontFamily: "Verdana, Geneva, sans-serif",
+                fontSize: 18,
+                paddingLeft: 10,
+            };
+// I'm adding the styling to the h2 tag
+// I also made it output the name prop
+            return (  
+                <div>
+                    <h2 style={jobStyle}> {this.props.job} </h2>
+                </div>
+            );
+        }
+    }
+// This is a class for the role component
+    class Role extends React.Component {
+        render(){ 
+// This is the styling for the component being put into a variable
+// I'm setting the font type and size, as well as adding padding so that 
+// the badges are not touching the edge of the page
+            var roleStyle={
+                fontFamily: "Verdana, Geneva, sans-serif",
+                fontSize: 18,
+                paddingLeft: 10,
+            };
+// I'm adding the styling to the h2 tag
+// I also made it output the name prop
+// I have a br tag so that the role will be closer to the bottom
+            return ( 
+                <div>
+                    <br/>
+                    <h2 style={roleStyle}> {this.props.role} </h2>
+                </div> 
+            );
+        }
+    }
+// This is a class for the role component
+// This is where the other components will be glued together
+    class ConferenceBadge extends React.Component{
+        render(){
+// This is the styling for the badge
+// I set the height and width, the border, the colour and the border radius
+            var badgeStyle={
+                height: 250,
+                width: 250,
+                border: "1px solid #000",
+                backgroundColor: this.props.color,
+                borderRadius: 10
+            };
+            return (
+// In this div, I am placing the three components I created as well as adding the styling for the badge
+            <div style={badgeStyle}>
+                <Name name={this.props.name} />
+                <Job job={this.props.job} />
+                <Role role={this.props.role} />
+            </div>
+            );
+        }
+    }
+// In the div, I am creating 3 ConferenceBadge components and adding their prop data so that they 
+// are filled with information
+// the document.querySelector code is saying which div I would like to add this information too
+        ReactDOM.render(
+            <div>
+                <ConferenceBadge name="Nicholas Athanasopoulos" job="JS Developer" role="Attendee" color="purple" />
+                <br/>
+                <ConferenceBadge name="John Smith" job="JS Admin" role="Presenter" color="green"/>
+                <br/>
+                <ConferenceBadge name="Sarah Lee" job="JS Developer" role="Volunteer" color="orange"/>
+            </div>,
+        document.querySelector("#container")
+        );
+    </script>
+</body>
+
+</html>
